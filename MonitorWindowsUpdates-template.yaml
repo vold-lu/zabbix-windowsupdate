@@ -1,0 +1,44 @@
+zabbix_export:
+  version: '6.0'
+  date: '2022-08-19T09:46:35Z'
+  groups:
+    -
+      uuid: 6d40a82878374f95924fbfa7eb19a761
+      name: 'Windows Servers'
+  templates:
+    -
+      uuid: 006a071212b147a7a7873b63da013afa
+      template: 'Windows Updates'
+      name: 'Windows Updates'
+      description: 'Monitor Windows Updates'
+      groups:
+        -
+          name: 'Windows Servers'
+      items:
+        -
+          uuid: 8cf33929124041c3b085191c4e6261ed
+          name: 'Windows monitoring critical updates'
+          key: windows.updates.critical
+          delay: 5m
+          triggers:
+            -
+              uuid: 848a5d4b7bd3414bb0b62441b7b9845a
+              expression: 'last(/Windows Updates/windows.updates.critical)>0'
+              name: 'Numbers of critical updates'
+              priority: WARNING
+        -
+          uuid: 1d4754e6e904418a87f06f432e8b7396
+          name: 'Windows monitoring important updates'
+          key: windows.updates.important
+          delay: 5m
+          triggers:
+            -
+              uuid: 943741cec00b49598ca39ae5112e749b
+              expression: 'last(/Windows Updates/windows.updates.important)>0'
+              name: 'Numbers of important updates'
+              priority: WARNING
+        -
+          uuid: 9edaedda8a7843ea8eab49e288afabf7
+          name: 'Windows monitoring others updates'
+          key: windows.updates.others
+          delay: 5m
