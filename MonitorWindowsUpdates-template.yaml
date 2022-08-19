@@ -1,6 +1,6 @@
 zabbix_export:
   version: '6.0'
-  date: '2022-08-19T09:46:35Z'
+  date: '2022-08-19T12:37:55Z'
   groups:
     -
       uuid: 6d40a82878374f95924fbfa7eb19a761
@@ -17,28 +17,31 @@ zabbix_export:
       items:
         -
           uuid: 8cf33929124041c3b085191c4e6261ed
-          name: 'Windows monitoring critical updates'
-          key: windows.updates.critical
-          delay: 5m
+          name: 'Available Windows critical updates'
+          type: TRAP
+          key: windows.critical.updates
+          delay: '0'
           triggers:
             -
               uuid: 848a5d4b7bd3414bb0b62441b7b9845a
-              expression: 'last(/Windows Updates/windows.updates.critical)>0'
-              name: 'Numbers of critical updates'
-              priority: WARNING
+              expression: 'last(/Windows Updates/windows.critical.updates)>0'
+              name: 'Critical updates available'
+              priority: AVERAGE
         -
           uuid: 1d4754e6e904418a87f06f432e8b7396
-          name: 'Windows monitoring important updates'
-          key: windows.updates.important
-          delay: 5m
+          name: 'Available Windows important updates'
+          type: TRAP
+          key: windows.important.updates
+          delay: '0'
           triggers:
             -
               uuid: 943741cec00b49598ca39ae5112e749b
-              expression: 'last(/Windows Updates/windows.updates.important)>0'
-              name: 'Numbers of important updates'
+              expression: 'last(/Windows Updates/windows.important.updates)>0'
+              name: 'Important updates available'
               priority: WARNING
         -
           uuid: 9edaedda8a7843ea8eab49e288afabf7
-          name: 'Windows monitoring others updates'
-          key: windows.updates.others
-          delay: 5m
+          name: 'Available Windows others updates'
+          type: TRAP
+          key: windows.others.updates
+          delay: '0'
