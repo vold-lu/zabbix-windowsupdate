@@ -17,7 +17,7 @@ zabbix_export:
       items:
         -
           uuid: e2ba07c3bddd43948d1eb4e8beb99441
-          name: 'Check Windows Update'
+          name: 'Check Windows updates'
           type: ZABBIX_ACTIVE
           key: 'system.run[powershell.exe -NoProfile -ExecutionPolicy Bypass -file "C:\Program Files\Zabbix Agent\Scripts\MonitorWindowsUpdates.ps1",nowait]'
           delay: 5m
@@ -25,7 +25,7 @@ zabbix_export:
           value_type: LOG
         -
           uuid: 8cf33929124041c3b085191c4e6261ed
-          name: 'Available Windows critical updates'
+          name: 'Number of Windows critical updates available'
           type: TRAP
           key: windows.critical.updates
           delay: '0'
@@ -33,11 +33,11 @@ zabbix_export:
             -
               uuid: 848a5d4b7bd3414bb0b62441b7b9845a
               expression: 'last(/Windows Updates/windows.critical.updates)>0'
-              name: 'Critical updates available'
+              name: 'Critical Windows updates available'
               priority: AVERAGE
         -
           uuid: 1d4754e6e904418a87f06f432e8b7396
-          name: 'Available Windows important updates'
+          name: 'Number of important Windows updates available'
           type: TRAP
           key: windows.important.updates
           delay: '0'
@@ -45,11 +45,11 @@ zabbix_export:
             -
               uuid: 943741cec00b49598ca39ae5112e749b
               expression: 'last(/Windows Updates/windows.important.updates)>0'
-              name: 'Important updates available'
+              name: 'Important Windows updates available'
               priority: WARNING
         -
           uuid: 9edaedda8a7843ea8eab49e288afabf7
-          name: 'Available Windows others updates'
+          name: 'Number of others windows updates available'
           type: TRAP
           key: windows.others.updates
           delay: '0'
