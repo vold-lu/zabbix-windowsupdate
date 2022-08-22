@@ -1,10 +1,13 @@
 zabbix_export:
   version: '6.0'
-  date: '2022-08-19T12:37:55Z'
+  date: '2022-08-22T13:09:12Z'
   groups:
     -
       uuid: 6d40a82878374f95924fbfa7eb19a761
       name: 'Windows Servers'
+    -
+      uuid: 76b8d39dfd844a32b1df1fdb767b4b6a
+      name: 'Windows Updates'
   templates:
     -
       uuid: 006a071212b147a7a7873b63da013afa
@@ -14,7 +17,17 @@ zabbix_export:
       groups:
         -
           name: 'Windows Servers'
+        -
+          name: 'Windows Updates'
       items:
+        -
+          uuid: e2ba07c3bddd43948d1eb4e8beb99441
+          name: 'Check Windows Update'
+          type: ZABBIX_ACTIVE
+          key: 'system.run[powershell.exe -NoProfile -ExecutionPolicy Bypass -file "C:\Program Files\Zabbix Agent\Scripts\MonitorWindowsUpdates.ps1",nowait]'
+          delay: 5m
+          trends: '0'
+          value_type: LOG
         -
           uuid: 8cf33929124041c3b085191c4e6261ed
           name: 'Available Windows critical updates'
